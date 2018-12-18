@@ -1,0 +1,12 @@
+<h1>Create Person</h1>
+
+<form #personCreateForm="ngForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label for="name">Name</label>
+    <input [(ngModel)]="person.name" name="name" class="form-control" placeholder="name" required>
+  </p>
+
+  <p>
+    <button class="btn btn-success" [disabled]="!personCreateForm.valid">Create</button>
+  </p>
+</form>

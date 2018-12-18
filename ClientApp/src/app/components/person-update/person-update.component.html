@@ -1,0 +1,16 @@
+<div *ngIf="person">
+
+    <h1>Update Person (Id: {{person.id}})</h1>
+
+    <form #personUpdateForm="ngForm" (ngSubmit)="onSubmit()">
+      <p>
+        <label for="name">Name</label>
+        <input [(ngModel)]="person.name" name="name" class="form-control" placeholder="name" required>
+      </p>
+    
+      <p>
+        <button class="btn btn-primary" [disabled]="!personUpdateForm.valid">Update</button>
+      </p>
+    </form>
+    
+</div>

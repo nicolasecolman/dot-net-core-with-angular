@@ -1,0 +1,19 @@
+<div *ngIf="person">
+  <h1>Person Detail</h1>
+
+  <p class="text-right">
+      <a routerLink="/persons/{{person.id}}/update" class="btn btn-primary">Edit</a>
+    <a routerLink="/persons" class="btn btn-default">List</a>
+  </p>
+
+  <table class="table" *ngIf="person">
+    <tr>
+      <td>Id</td>
+      <td>{{person.id}}</td>
+    </tr>
+    <tr>
+      <td>Name</td>
+      <td>{{person.name}}</td>
+    </tr>
+  </table>
+</div>

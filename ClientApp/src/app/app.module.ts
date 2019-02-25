@@ -1,7 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -18,6 +18,11 @@ import { PersonUpdateComponent } from './components/person-update/person-update.
 import { PersonDeleteComponent } from './components/person-delete/person-delete.component';
 import { UploadComponent } from './upload/upload.component';
 
+//Para deshabilitar boton enviar durante llamada ajax
+import { DisableButtonDuringAjax } from './directives/disable-button-during-ajax.directive';
+import { BusyService } from './services/busy.service';
+import { ProgressInterceptor } from './interceptors/progress-interceptor'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +35,8 @@ import { UploadComponent } from './upload/upload.component';
     PersonCreateComponent,
     PersonUpdateComponent,
     PersonDeleteComponent,
-    UploadComponent
+    UploadComponent,
+    DisableButtonDuringAjax
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -48,7 +54,11 @@ import { UploadComponent } from './upload/upload.component';
       { path: 'upload', component: UploadComponent }
     ])
   ],
-  providers: [PersonService, Title],
+  providers: [PersonService, Title, BusyService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: ProgressInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +16,7 @@ import { PersonDetailComponent } from './components/person-detail/person-detail.
 import { PersonCreateComponent } from './components/person-create/person-create.component';
 import { PersonUpdateComponent } from './components/person-update/person-update.component';
 import { PersonDeleteComponent } from './components/person-delete/person-delete.component';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { PersonDeleteComponent } from './components/person-delete/person-delete.
     PersonDetailComponent,
     PersonCreateComponent,
     PersonUpdateComponent,
-    PersonDeleteComponent
+    PersonDeleteComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -42,10 +44,11 @@ import { PersonDeleteComponent } from './components/person-delete/person-delete.
       { path: 'persons/create', component: PersonCreateComponent },
       { path: 'persons/:id', component: PersonDetailComponent },
       { path: 'persons/:id/update', component: PersonUpdateComponent },
-      { path: 'persons/:id/delete', component: PersonDeleteComponent }
+      { path: 'persons/:id/delete', component: PersonDeleteComponent },
+      { path: 'upload', component: UploadComponent }
     ])
   ],
-  providers: [PersonService],
+  providers: [PersonService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

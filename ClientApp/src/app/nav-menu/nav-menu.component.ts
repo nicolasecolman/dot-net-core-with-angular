@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Title }     from '@angular/platform-browser';
 
 @Component({
   selector: 'app-nav-menu',
@@ -14,5 +15,11 @@ export class NavMenuComponent {
 
   toggle() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  public constructor(private titleService: Title ) { }
+ 
+  public setTitle( newTitle: string) {
+    this.titleService.setTitle( newTitle );
   }
 }

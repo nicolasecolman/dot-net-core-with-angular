@@ -13,25 +13,30 @@
         <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
-                    <a [routerLink]='["/"]' (click)='collapse()'>
+                    <a [routerLink]='["/"]' (click)='collapse(); setTitle("Home")'>
                         <span class='glyphicon glyphicon-home'></span> Home
                     </a>
                 </li>
                 <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/counter"]' (click)='collapse()'>
+                    <a [routerLink]='["/counter"]' (click)='collapse(); setTitle("Counter")'>
                         <span class='glyphicon glyphicon-education'></span> Counter
                     </a>
                 </li>
                 <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
+                    <a [routerLink]='["/fetch-data"]' (click)='collapse(); setTitle("Fetch")'>
                         <span class='glyphicon glyphicon-th-list'></span> Fetch data
                     </a>
                 </li>
                 <li [routerLinkActive]='["link-active"]'>
-                    <a [routerLink]='["/persons"]' (click)='collapse()'>
+                    <a [routerLink]='["/persons"]' (click)='collapse(); setTitle("Persons")'>
                         <span class='glyphicon glyphicon-user'></span> Persons
                     </a>
-                </li>                
+                </li>
+                <li [routerLinkActive]='["link-active"]'>
+                    <a [routerLink]='["/upload"]' (click)='collapse()'>
+                       <span class='glyphicon glyphicon-upload'></span> Upload
+                    </a>
+                 </li>
             </ul>
         </div>
     </div>

@@ -1,7 +1,7 @@
 import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -17,6 +17,8 @@ import { PersonCreateComponent } from './components/person-create/person-create.
 import { PersonUpdateComponent } from './components/person-update/person-update.component';
 import { PersonDeleteComponent } from './components/person-delete/person-delete.component';
 import { UploadComponent } from './upload/upload.component';
+
+import { MyInterceptor } from './interceptors/my-interceptor'
 
 @NgModule({
   declarations: [
@@ -48,7 +50,11 @@ import { UploadComponent } from './upload/upload.component';
       { path: 'upload', component: UploadComponent }
     ])
   ],
-  providers: [PersonService, Title],
+  providers: [PersonService, Title, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: MyInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
